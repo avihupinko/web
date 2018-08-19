@@ -10,7 +10,7 @@ function initTable(url){
         }
     };
 
-    xhttp.open("GET", "http://localhost:4000/offers" + (url !== "" ? '?' + url : ""), true);
+    xhttp.open("GET", "https://fierce-meadow-78785.herokuapp.com/offers" + (url !== "" ? '?' + url : ""), true);
     xhttp.send();
 }
 

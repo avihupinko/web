@@ -4,6 +4,7 @@
 	<title>Table V03</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="referrer" content="no-referrer" />
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -29,7 +30,7 @@
 		<div class="container-table100">
 			<div class="wrap-table100">
 				<div class="container">
-					<form role="form" class="form-horizontal" onsubmit="submitForm()">
+					<form role="form" class="form-horizontal">
 						<div class="form-group">
 							<div class="row" >
 								<div class="col-sm-4">
@@ -53,13 +54,13 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-info pull-left">Submit</button>
-									<button type="button" class="btn btn-info pull-right">Update DB</button>
+									<button type="button" onclick="submitForm()" class="btn btn-info pull-left">Submit</button>
+									<button type="button" onclick="updateDB()" class="btn btn-info pull-right">Update DB</button>
 								</div>
 							</div>
 						</div>
-
 					</form>
+					<img id="loadingGif" src="images/loading.gif" style="display: none;">
 				</div>
 			</div>
 			<div class="wrap-table100">

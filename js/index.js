@@ -1,12 +1,50 @@
 
+var showLoadingGif= false;
+
+function loadGif(){
+    showLoadingGif = !showLoadingGif;
+    if (showLoadingGif){
+        document.getElementById("loadingGif").style.display="";
+    } else {
+        document.getElementById("loadingGif").style.display="none";
+    }
+}
+
+function updateDB(){
+    var xhttp = new XMLHttpRequest();
+    loadGif();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "OK"){
+                alert("DB has been updated from Appthis");
+                initTable("update");
+            } else {
+                alert("Error in updating the db");
+                loadGif();
+            }
+        } else if (this.status != 200 && this.readyState == 4) {
+            alert("Error in request")
+        }
+    };
+
+    xhttp.open("GET", "https://fierce-meadow-78785.herokuapp.com/update", true);
+    xhttp.send();
+}
+
 function initTable(url){
     var xhttp = new XMLHttpRequest();
+    if (url == "update"){
+        url="";
+    } else {
+        loadGif();
+    }
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var resp = JSON.parse(this.responseText);
             updateTable(resp);
         } else if (this.status != 200 && this.readyState == 4) {
-            alert("Error in request")
+            alert("Error in request");
+            loadGif();
         }
     };
 
@@ -63,6 +101,7 @@ function updateTable(offers) {
             '</tr>';
     });
     document.getElementById('offers').innerHTML = rows;
+    loadGif();
 }
 
 document.body.onload = function () {
